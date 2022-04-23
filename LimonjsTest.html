@@ -1,0 +1,15 @@
+<meta charset="utf-8">
+<script src="LimonJS.js"></script>
+<div style="background-color:gold" class="test1">e</div>
+<div style="background-color:blue" class="test1"><c>h</c><c>h</c><c>h</c><c>h</c><c>h</c><c>h</c></div>
+<script>
+    asyncfor(0,100,5,null,function (stepnum) {
+        console.log(stepnum)
+    },10);
+    document.addEventListener('DOMContentLoaded', function () {
+        var xd = messag("Welcome to<h1>LimonJS!</h1><br>Nice To See You! (LimonJS is made by HAKANKOKCU)<h3>This is an test.</h3>","Welcome to LimonJS!","True",true,"False",function(yn) {console.log("You clicked " + yn)});
+        console.log(xd)
+        setattrs(document.querySelectorAll(".test1"),"style",";width:50%",true)
+        makecolorful(document.querySelectorAll(".test1")[1],["gold","orange","yellow","darkorange","white","white"])
+    });
+</script>
