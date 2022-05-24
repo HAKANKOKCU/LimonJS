@@ -27,25 +27,30 @@ function messag(msg,title,okbutton,nobutton,cncbutton,callback,top) {
     msgboxbc.style.left = "0";
     msgboxbc.style.width = "100%";
     msgboxbc.style.height = "100%";
+	msgboxbc.style.transition = "opacity 0.3s";
 	msgboxbc.classList.add("limonjs-msgbox-bc")
     var msgbox = document.createElement("div");
     msgbox.style.borderRadius = "10px";
     msgbox.style.backgroundColor = "Black";
     msgbox.style.color = "gold";
-    msgbox.style.position = "fixed";
+    msgbox.style.position = "absolute";
     msgbox.style.top = "-100";
     msgbox.style.opacity = "0";
     msgbox.style.transition = "top 0.5s, opacity 0.3s";
     msgbox.style.left = "25%";
     msgbox.style.minWidth = "50%";
-    msgbox.style.maxWidth = "100%";
-	msgbox.style.maxHeight = "90%"
+    msgbox.style.maxWidth = "calc(100% - 20px)";
+	if (top) {
+		msgbox.style.maxHeight = "calc(100% - " + top + ")"
+	}else {
+		msgbox.style.maxHeight = "calc(100% - 10)"
+	}
     msgbox.style.padding = "10px";
-	msgbox.style.overflow = "auto";
+	msgboxbc.style.overflow = "auto";
 	msgbox.classList.add("limonjs-msgbox-content")
   if (window.innerWidth < 1238) {
     msgbox.style.left = "0"
-    msgbox.style.width = "100%"
+    msgbox.style.width = "calc(100% - 20px)"
   }
     var nobuttonn = "inline-block";
     if (!nobutton) {nobuttonn = "none"}
@@ -59,6 +64,7 @@ function messag(msg,title,okbutton,nobutton,cncbutton,callback,top) {
             document.body.removeChild(msgboxbc)
         },500)
         msgbox.style.opacity = "0";
+		msgboxbc.style.opacity = "0"
         msgbox.style.top = "-100";
     })
     msgbox.getElementsByClassName("cncbuttonlimonjs")[0].addEventListener("click",function() {
@@ -69,6 +75,7 @@ function messag(msg,title,okbutton,nobutton,cncbutton,callback,top) {
             document.body.removeChild(msgboxbc)
         },500)
         msgbox.style.opacity = "0";
+		msgboxbc.style.opacity = "0"
         msgbox.style.top = "-100";
     })
     msgboxbc.appendChild(msgbox);
@@ -107,4 +114,28 @@ function makecolorful(elem,colors) {
       charelements[i].style.color = colorrandom;
     }
     elem.style.opacity = "";
+}
+function imageView(url) {
+	var bg = document.createElement("div")
+	bg.style.backgroundColor = "rgba(0,0,0,0.3)";
+    bg.style.position = "fixed";
+    bg.style.top = "0";
+    bg.style.left = "0";
+    bg.style.width = "100%";
+	bg.style.height = "100%";
+	bg.style.transition = "opacity 0.3s";
+	bg.style.display = "flex";
+	bg.style.alignItems = "center";
+	bg.style.justifyContent = "center";
+	bg.classList.add("limonjs-imgview-bc")
+	bg.onclick = function() {
+		bg.remove()
+	}
+	var img = document.createElement("img")
+	img.src = url;
+	img.style.maxHeight = "100%"
+	img.classList.add("limonjs-imageview-img")
+	bg.appendChild(img)
+	document.body.appendChild(bg)
+	return bg;
 }
